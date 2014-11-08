@@ -37,7 +37,8 @@ public class Entity {
     }
 
     public void update(float delta){
-
+        xPos += xVel * delta;
+        yPos += yVel * delta;
     }
 
     public void draw(SpriteBatch batch){
