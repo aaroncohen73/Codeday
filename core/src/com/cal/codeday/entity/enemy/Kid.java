@@ -7,7 +7,7 @@ public class Kid extends Person {
 
     public Kid(){
         super("placeholder", 32, 32);
-        speed = 150 / 60;
+        speed = 150;
     }
 
 }
