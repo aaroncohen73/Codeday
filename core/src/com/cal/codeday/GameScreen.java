@@ -16,14 +16,17 @@ import java.util.ArrayList;
  */
 public class GameScreen implements Screen {
 
-    OrthographicCamera camera = new OrthographicCamera();
+    OrthographicCamera camera;
     SpriteBatch batch;
 
-    Level currentLevel = new Level("SampleLayout");
+    Level currentLevel;
 
     public GameScreen(){
+        camera = new OrthographicCamera();
         camera.setToOrtho(false, 1000, 600); //Game is 800x600, menu on side is 200x600
         batch = new SpriteBatch();
+        currentLevel = new Level("SampleLayout");
+        currentLevel.start();
     }
 
     public void show(){

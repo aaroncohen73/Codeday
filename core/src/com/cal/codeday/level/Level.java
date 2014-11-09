@@ -28,36 +28,37 @@ public class Level {
 
     private boolean isStarted = false;
     private float releaseRate = 1; //Towers spawned per second
+    private float releaseTimer = 0;
 
-    public Level(String levelName){
+    public Level(String levelName) {
         levelBackground = new Texture(Gdx.files.internal("maps/" + levelName + ".png"));
 
         String levelPath = Gdx.files.internal("maps/" + levelName + ".path").readString();
         String[] points = levelPath.split("\n");
         pathPoints = new Point[points.length];
-        for(int i = 0; i < points.length; i++){
+        for (int i = 0; i < points.length; i++) {
             pathPoints[i] = new Point(Integer.parseInt(points[i].split(",")[0]), Integer.parseInt(points[i].split(",")[1]));
         }
 
         String[] spawns = Gdx.files.internal("maps/" + levelName + ".spawn").readString().split("\n");
-        for(String s : spawns){
+        for (String s : spawns) {
             int num = Integer.parseInt(s.substring(1));
             char first = s.charAt(0);
-            switch(first){
+            switch (first) {
                 case 'k':
-                    for(int i = 0; i < num; i++){
+                    for (int i = 0; i < num; i++) {
                         customers.add(new Kid());
                     }
                     break;
 
                 case 'r':
-                    for(int i = 0; i < num; i++){
+                    for (int i = 0; i < num; i++) {
                         customers.add(new Regular());
                     }
                     break;
 
                 case 't':
-                    for(int i = 0; i < num; i++){
+                    for (int i = 0; i < num; i++) {
                         customers.add(new Tank());
                     }
                     break;
@@ -65,16 +66,36 @@ public class Level {
                 default:
                     System.out.println("Error: Level script syntax error!");
                     break;
-                }
             }
         }
     }
 
-    public void start(){
 
+    public void start(){
+        if(towers.size() == 0){
+            System.out.println("Are you sure? You have no towers out!");
+            //return;
+        }
+
+        isStarted = true;
     }
 
     public void update(float delta){
+        if(!isStarted) return;
+
+        releaseTimer += delta;
+        if(releaseTimer >= (1 / releaseRate)){
+            if(currentCustomer == customers.size()){
+
+            }else {
+                releaseTimer = 0;
+                customers.get(currentCustomer).show();
+                customers.get(currentCustomer).setPathPoints(pathPoints);
+                customers.get(currentCustomer).start();
+                currentCustomer++;
+            }
+        }
+
         for(Person p : customers){
             p.update(delta);
         }
@@ -85,6 +106,14 @@ public class Level {
 
     public void draw(SpriteBatch batch){
         batch.draw(levelBackground, 0, 0, 800, 600);
+
+        for(Person p : customers){
+            p.draw(batch);
+        }
+
+        for(Tower t : towers){
+            t.draw(batch);
+        }
     }
 
     public void dispose(){
