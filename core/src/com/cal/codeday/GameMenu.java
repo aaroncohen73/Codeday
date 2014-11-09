@@ -35,7 +35,7 @@ public class GameMenu {
         menuBG = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuMainBG.png"));
         menuStats01 = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuStats01.png"));
         //menuStats02 = new Texture(Gdx.files.internal("gfx/spriteFinal/menuStatus02.png"));
-        menuOverlay = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuOverlay.png"));
+        menuOverlay = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuPlayOverlay.png"));
     }
 
     public void draw(SpriteBatch batch) {
