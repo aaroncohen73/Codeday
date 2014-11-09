@@ -31,4 +31,8 @@ public class Level {
         batch.draw(levelBackground, 0, 0, 800, 600);
     }
 
+    public void dispose(){
+        levelBackground.dispose();
+    }
+
 }

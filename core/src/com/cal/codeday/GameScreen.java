@@ -63,7 +63,11 @@ public class GameScreen implements Screen {
     }
 
     public void dispose(){
-
+        currentLevel.dispose();
+        for(Entity e : entities){
+            e.dispose();
+        }
+        batch.dispose();
     }
 
     public void addEntity(Entity e){

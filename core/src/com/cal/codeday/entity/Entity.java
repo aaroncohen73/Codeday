@@ -49,8 +49,8 @@ public class Entity {
         batch.draw(anim.getKeyFrame(Game.gameTime), xPos, yPos, width, height);
     }
 
-    public void destroy(){
-
+    public void dispose(){
+        animSheet.dispose();
     }
 
 }
