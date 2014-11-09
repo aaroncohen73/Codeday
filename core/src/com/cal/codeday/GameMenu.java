@@ -62,25 +62,63 @@ public class GameMenu {
 
     }
 
-    public void pollInput(){
+    public void pollInput() {
         float mX = Gdx.input.getX();
         float mY = 600 - Gdx.input.getY();
-        if(presentShooter.click(mX, mY)){
+        if (presentShooter.click(mX, mY)) {
             state = 1; //Place present shooter
         }
-        if(turretScrollDrag.click(mX, mY)){
+        if (turretScrollDrag.click(mX, mY)) {
             turretScrollDrag.move(Math.max(Math.min(mX - 16, 945), 825), 360);
             scrollValue = turretScrollDrag.x - 825;
         }
 
-        if(state == 1){
-            if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && money >= 50){
+        if (state == 1) {
+            if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && money >= 50) {
                 money -= 50;
                 state = 0;
                 Game.gameScreen.currentLevel.towers.add(new PresentShooter(Game.gameScreen.currentLevel, mX, mY));
             }
         }
+        if (christmasLightShooter.click(mX, mY)) {
+            state = 2; // place candy shooter
+        }
+        if (state == 2) {
+            if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && money >= 50) {
+                money -= 50;
+                state = 0;
+            }
+        }
+        if (candyShooter.click(mX, mY)) {
+            state = 3; // place candy shooter
+        }
+        if (state == 3) {
+            if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && money >= 100) {
+                money -= 100;
+                state = 0;
+            }
+        }
+        if (bottledEggnogLauncher.click(mX, mY)) {
+            state = 4; // place candy shooter
+        }
+        if (state == 4) {
+            if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && money >= 250) {
+                money -= 250;
+                state = 0;
+            }
+        }
+        if (christmasTreeMortar.click(mX, mY)) {
+            state = 5; // place candy shooter
+        }
+        if (state == 5) {
+            if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && money >= 500) {
+                money -= 500;
+                state = 0;
+            }
+        }
     }
+
+
 
     public void update(){
         christmasLightShooter.move(825 + 256 - scrollValue, 400);
