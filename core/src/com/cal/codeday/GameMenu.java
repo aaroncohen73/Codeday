@@ -2,7 +2,9 @@ package com.cal.codeday;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import com.cal.codeday.entity.Entity;
+import com.cal.codeday.entity.enemy.Person;
 
 /**
  * Created by acohen on 11/8/14.
@@ -10,17 +12,10 @@ import com.cal.codeday.entity.Entity;
  */
 public class GameMenu {
 
-    int cash = 0;
-    MenuState state = MenuState.Default;
+    int cash = 100;
 
-    public void draw(SpriteBatch batch){
+    public void draw(SpriteBatch batch) {
 
-    }
-
-    private enum MenuState{
-        Default,
-        ViewTower,
-        ViewTowerPurchase
     }
 
 }

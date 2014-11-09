@@ -9,6 +9,8 @@ import java.awt.Point;
  */
 public class Person extends Entity {
 
+    public static int health = 20;
+
     protected float speed;
 
     protected Point[] pathPoints;
@@ -56,6 +58,7 @@ public class Person extends Entity {
         super.update(delta);
         if(Math.abs(xPos - nextPoint.x) < 5f && Math.abs(yPos - nextPoint.y) < 5f){
             if(++nextPointIndex == pathPoints.length){
+                Person.health--;
                 dispose();
                 hide();
             }else{
