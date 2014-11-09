@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 import com.badlogic.gdx.scenes.scene2d.utils.ScissorStack;
 import com.cal.codeday.entity.Entity;
@@ -16,6 +17,8 @@ import com.cal.codeday.entity.tower.PresentShooter;
  * The sidebar in-game (Purchase towers, etc.) (Could be called player class, idk)
  */
 public class GameMenu {
+
+    BitmapFont font = new BitmapFont(Gdx.files.internal("font/Minecraftia-Regular-32.fnt"));
 
     Texture menuBG;
     Texture menuStats01;
@@ -62,8 +65,7 @@ public class GameMenu {
     public void pollInput(){
         float mX = Gdx.input.getX();
         float mY = 600 - Gdx.input.getY();
-        if(presentShooter.click(mX, mY) && money >= 50){
-
+        if(presentShooter.click(mX, mY)){
             state = 1; //Place present shooter
         }
         if(turretScrollDrag.click(mX, mY)){
@@ -72,7 +74,7 @@ public class GameMenu {
         }
 
         if(state == 1){
-            if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT)){
+            if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && money >= 50){
                 money -= 50;
                 state = 0;
                 Game.gameScreen.currentLevel.towers.add(new PresentShooter(Game.gameScreen.currentLevel, mX, mY));
@@ -108,6 +110,7 @@ public class GameMenu {
         batch.draw(turretScrollBase, 825, 370, 150, 20);
         turretScrollDrag.draw(batch);
         batch.draw(menuCoin, 820, 500, 64, 64);
+        font.draw(batch, new Integer(money).toString(), 900, 500);
         batch.draw(menuOverlay, 800, 0, 200, 600, 0, 0, 200, 600, true, false);
     }
 
