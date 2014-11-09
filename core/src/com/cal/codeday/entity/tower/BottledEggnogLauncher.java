@@ -1,12 +1,14 @@
 package com.cal.codeday.entity.tower;
 
+import com.cal.codeday.level.Level;
+
 /**
  * Created by Dhaley on 11/8/2014.
  */
 public class BottledEggnogLauncher extends Tower {
 
-    public BottledEggnogLauncher() {
-        super ("placeholder3" , 64);
+    public BottledEggnogLauncher(Level currentLevel) {
+        super ("placeholder3" , 64, currentLevel);
         range = 60f;
         power = 35f;
         fire_rate = .50f;

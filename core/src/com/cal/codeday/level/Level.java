@@ -5,10 +5,12 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.cal.codeday.entity.Entity;
 import com.cal.codeday.entity.enemy.Kid;
 import com.cal.codeday.entity.enemy.Person;
 import com.cal.codeday.entity.enemy.Regular;
 import com.cal.codeday.entity.enemy.Tank;
+import com.cal.codeday.entity.tower.PresentShooter;
 import com.cal.codeday.entity.tower.Tower;
 
 import java.awt.Point;
@@ -73,8 +75,20 @@ public class Level {
                     break;
             }
         }
+
+        towers.add(new PresentShooter(this));
     }
 
+    public ArrayList<Person> getCustomers(){
+        ArrayList<Person> visible = new ArrayList<Person>();
+        for(Person p : customers){
+            if(p.isVisible()){
+                visible.add(p);
+            }
+        }
+
+        return visible;
+    }
 
     public void start(){
         if(towers.size() == 0){
@@ -135,6 +149,14 @@ public class Level {
     }
 
     public void dispose(){
+        for(Person p : customers){
+            p.dispose();
+        }
+
+        for(Tower t : towers){
+            t.dispose();
+        }
+
         levelBackground.dispose();
     }
 

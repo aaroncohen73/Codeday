@@ -42,6 +42,18 @@ public class Entity {
         anim = new Animation((1.0f / Game.gameFPS), animFrames);
     }
 
+    public float getxPos(){
+        return xPos;
+    }
+
+    public float getyPos(){
+        return yPos;
+    }
+
+    public float getDistance(Entity e){
+        return (float) Math.sqrt(Math.pow(e.getxPos() - xPos, 2) + Math.pow(e.getyPos() - yPos, 2));
+    }
+
     public void update(float delta){
         xPos += xVel * delta;
         yPos += yVel * delta;

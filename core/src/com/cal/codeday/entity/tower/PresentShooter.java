@@ -1,12 +1,16 @@
 package com.cal.codeday.entity.tower;
 
+import com.cal.codeday.level.Level;
+
 /**
  * Created by Dhaley on 11/8/2014.
  */
 public class PresentShooter extends Tower {
 
-    public PresentShooter(){
-        super("placeholder", 64);
+    public PresentShooter(Level currentLevel){
+        super("gfx/spriteFinal/Towers/PresentShooter/presentShooter", 64, currentLevel);
+        xPos = 100;
+        yPos = 150;
         range = 60f;
         power = 25f;
         fire_rate = 1f;
