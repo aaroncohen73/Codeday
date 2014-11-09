@@ -32,7 +32,7 @@ public class Person extends Entity {
         isHidden = true;
     }
 
-    public boolean isVisible() {return isHidden;}
+    public boolean isVisible() {return !isHidden;}
 
     public void setPathPoints(Point[] path){
         pathPoints = path;

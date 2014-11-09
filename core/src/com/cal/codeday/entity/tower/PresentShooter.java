@@ -9,9 +9,9 @@ public class PresentShooter extends Tower {
 
     public PresentShooter(Level currentLevel){
         super("gfx/spriteFinal/Towers/PresentShooter/presentShooter", 64, currentLevel);
-        xPos = 100;
+        xPos = 150;
         yPos = 150;
-        range = 60f;
+        range = 200f;
         power = 25f;
         fire_rate = 1f;
         cost = 50;
