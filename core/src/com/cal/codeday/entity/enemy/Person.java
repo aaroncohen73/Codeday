@@ -1,5 +1,6 @@
 package com.cal.codeday.entity.enemy;
 
+import com.cal.codeday.GameMenu;
 import com.cal.codeday.entity.Entity;
 
 import java.awt.Point;
@@ -9,9 +10,8 @@ import java.awt.Point;
  */
 public class Person extends Entity {
 
-    public static int health = 20;
-
     protected float speed;
+    protected float health;
 
     protected Point[] pathPoints;
     protected Point nextPoint;
@@ -31,8 +31,6 @@ public class Person extends Entity {
     public void hide(){
         isHidden = true;
     }
-
-    public boolean isVisible() {return !isHidden;}
 
     public void setPathPoints(Point[] path){
         pathPoints = path;
@@ -54,13 +52,20 @@ public class Person extends Entity {
         setDirection(nextPoint);
     }
 
+    public void isHit(float damage){
+        health -= damage;
+        if(health <= 0){
+            isHidden = true;
+        }
+    }
+
     public void update(float delta){
         if(isHidden) return;
 
         super.update(delta);
         if(Math.abs(xPos - nextPoint.x) < 5f && Math.abs(yPos - nextPoint.y) < 5f){
             if(++nextPointIndex == pathPoints.length){
-                Person.health--;
+                GameMenu.health--;
                 dispose();
                 hide();
             }else{

@@ -13,7 +13,7 @@ public class PresentShooter extends Tower {
         yPos = 150;
         range = 200f;
         power = 25f;
-        fire_rate = 1f;
+        fire_rate = 4f;
         cost = 50;
     }
 

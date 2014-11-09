@@ -50,6 +50,12 @@ public class Entity {
         return yPos;
     }
 
+    public float getWidth(){ return width; }
+
+    public float getHeight() { return height; }
+
+    public boolean isVisible() {return !isHidden;}
+
     public float getDistance(Entity e){
         return (float) Math.sqrt(Math.pow(e.getxPos() - xPos, 2) + Math.pow(e.getyPos() - yPos, 2));
     }
@@ -66,6 +72,7 @@ public class Entity {
     }
 
     public void dispose(){
+        isHidden = true;
         animSheet.dispose();
     }
 
