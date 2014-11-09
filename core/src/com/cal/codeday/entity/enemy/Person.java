@@ -37,8 +37,8 @@ public class Person extends Entity {
     public void setDirection(Point finish){
         float dx = finish.x - xPos;
         float dy = finish.y - yPos;
-        double theta = Math.atan(dy / dx);
-        xVel = speed * (float) Math.cos(theta);
+        double theta =Math.atan(dy / dx);
+        xVel = ((dx < 0)?-1:1) * speed * (float) Math.cos(theta);
         yVel = speed * (float) Math.sin(theta);
     }
 

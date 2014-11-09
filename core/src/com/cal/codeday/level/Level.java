@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class Level {
 
-    private static Music sadViolin = Gdx.audio.newMusic(Gdx.files.internal("music/violin.mp3"));
+    private static Music sadViolin = Gdx.audio.newMusic(Gdx.files.internal("music/SadViolin.mp3"));
 
     private Texture levelBackground;
     private Music levelMusic;
@@ -36,6 +36,7 @@ public class Level {
 
     public Level(String levelName) {
         levelBackground = new Texture(Gdx.files.internal("maps/" + levelName + ".png"));
+        levelMusic = sadViolin;
 
         String levelPath = Gdx.files.internal("maps/" + levelName + ".path").readString();
         String[] points = levelPath.split("\n");
