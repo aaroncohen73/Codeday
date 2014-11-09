@@ -19,8 +19,10 @@ import java.util.ArrayList;
  */
 public class Level {
 
+    private static Music sadViolin = Gdx.audio.newMusic(Gdx.files.internal("music/violin.mp3"));
+
     private Texture levelBackground;
-    public Music levelMusic;
+    private Music levelMusic;
 
     private ArrayList<Person> customers = new ArrayList<Person>();
     private int currentCustomer = 0;
@@ -79,12 +81,17 @@ public class Level {
             //return;
         }
 
+        levelMusic.setLooping(true);
+        levelMusic.play();
+
         isStarted = true;
     }
 
     public void end(boolean failed){
+        levelMusic.stop();
         if(failed){
-            //Game over man, game over!
+            sadViolin.setLooping(true);
+            sadViolin.play();
         }else{
 
         }
