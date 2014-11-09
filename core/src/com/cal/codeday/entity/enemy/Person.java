@@ -12,6 +12,7 @@ public class Person extends Entity {
 
     protected float speed;
     protected float health;
+    protected float reward;
 
     protected Point[] pathPoints;
     protected Point nextPoint;
@@ -66,6 +67,7 @@ public class Person extends Entity {
         if(Math.abs(xPos - nextPoint.x) < 5f && Math.abs(yPos - nextPoint.y) < 5f){
             if(++nextPointIndex == pathPoints.length){
                 GameMenu.health--;
+                GameMenu.money += reward;
                 dispose();
                 hide();
             }else{
