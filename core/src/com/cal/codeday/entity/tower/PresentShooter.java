@@ -7,6 +7,8 @@ import com.cal.codeday.level.Level;
  */
 public class PresentShooter extends Tower {
 
+    String projectileTexture = "gfx/spriteFinal/Decor/presentRed02.png";
+
     public PresentShooter(Level currentLevel, float x, float y){
         super("gfx/spriteFinal/Towers/PresentShooter/presentShooter", 64, currentLevel);
         xPos = x;

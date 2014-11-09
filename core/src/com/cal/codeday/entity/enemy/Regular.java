@@ -9,6 +9,7 @@ public class Regular extends Person {
         super("dummyCharacter02", 16, 16);
         speed = 100;
         health = 200;
+        reward = 10;
     }
 
 }

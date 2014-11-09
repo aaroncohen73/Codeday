@@ -9,6 +9,7 @@ public class Tank extends Person {
         super("dummyCharacter03", 16, 16);
         speed = 50;
         health = 500;
+        reward = 25;
     }
 
 }
