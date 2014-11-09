@@ -7,10 +7,16 @@ public class PresentShooter extends Tower {
 
     public PresentShooter(){
         super("placeholder", 64);
+        range = 60f;
+        power = 25f;
+        fire_rate = 1f;
+        cost = 50;
     }
 
     public void levelUp(){
-        //things
+        range *= 1.12;
+        power *= 1.25;
+        fire_rate *= 1.5;
         super.levelUp();
     }
 
