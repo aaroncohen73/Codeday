@@ -39,7 +39,7 @@ public class Level {
 
     public Level(String levelName) {
         levelBackground = new Texture(Gdx.files.internal("gfx/spriteFinal/Decor/levels/" + levelName + ".png"));
-        levelMusic = sadViolin;
+        levelMusic = Gdx.audio.newMusic(Gdx.files.internal("music/backGroundMusic.mp3"));
 
         String levelPath = Gdx.files.internal("gfx/spriteFinal/Decor/levels/" + levelName + ".path").readString();
         String[] points = levelPath.split("\n");
@@ -77,6 +77,9 @@ public class Level {
             }
         }
 
+        levelMusic.setLooping(true);
+        levelMusic.play();
+
         //towers.add(new PresentShooter(this));
     }
 
@@ -97,15 +100,13 @@ public class Level {
             //return;
         }
 
-        levelMusic.setLooping(true);
-        //levelMusic.play();
-
         isStarted = true;
     }
 
     public void end(boolean failed){
-       //levelMusic.stop();
+       levelMusic.stop();
         if(failed){
+            levelMusic = sadViolin;
             levelMusic.play();
         }else{
 

@@ -6,7 +6,7 @@ package com.cal.codeday.entity.enemy;
 public class Tank extends Person {
 
     public Tank(){
-        super("dummyCharacter03", 16, 16);
+        super("dummyCharacter03", 32, 32);
         speed = 50;
         health = 200;
         reward = 25;

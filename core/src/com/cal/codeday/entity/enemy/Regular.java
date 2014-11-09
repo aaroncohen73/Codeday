@@ -6,7 +6,7 @@ package com.cal.codeday.entity.enemy;
 public class Regular extends Person {
 
     public Regular(){
-        super("dummyCharacter02", 16, 16);
+        super("dummyCharacter02", 32, 32);
         speed = 100;
         health = 50;
         reward = 10;

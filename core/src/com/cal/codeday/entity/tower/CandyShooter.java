@@ -15,7 +15,7 @@ public class CandyShooter extends Tower {
         range = 100f;
         fire_rate = 5f;
         cost = 100;
-        power = 5f;
+        power = 2f;
     }
 
     @Override

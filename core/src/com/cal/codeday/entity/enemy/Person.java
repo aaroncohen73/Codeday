@@ -1,5 +1,9 @@
 package com.cal.codeday.entity.enemy;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.cal.codeday.Game;
 import com.cal.codeday.GameMenu;
 import com.cal.codeday.entity.Entity;
 
@@ -18,11 +22,13 @@ public class Person extends Entity {
     protected Point nextPoint;
     protected int nextPointIndex;
 
+    Texture tex;
+
     public Person(String texPath, int width, int height){
         super("gfx/customers/" + texPath + ".png", width, height);
+        tex = new Texture(Gdx.files.internal("gfx/customers/" + texPath + ".png"));
+
         isHidden = true;
-        width = 64;
-        height = 64;
     }
 
     public void show(){
@@ -78,6 +84,13 @@ public class Person extends Entity {
                 nextPoint = pathPoints[nextPointIndex];
                 setDirection(nextPoint);
             }
+        }
+    }
+
+    @Override
+    public void draw(SpriteBatch batch){
+        if(!isHidden) {
+            batch.draw(tex, xPos - (width / 2), yPos - (height / 2), width, height);
         }
     }
 
