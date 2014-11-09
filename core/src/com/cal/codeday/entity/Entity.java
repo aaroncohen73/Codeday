@@ -23,10 +23,12 @@ public class Entity {
     protected int TILE_NUM_WIDTH, TILE_NUM_HEIGHT;
     protected Animation anim;
 
+    protected boolean isHidden = false;
+
     public Entity(String texPath, int tileWidth, int tileHeight){
         animSheet = new Texture(Gdx.files.internal(texPath));
-        width = tileWidth;
-        height = tileHeight;
+        width = tileHeight;
+        height = tileWidth;
         TILE_NUM_WIDTH = animSheet.getWidth() / tileWidth;
         TILE_NUM_HEIGHT = animSheet.getHeight() / tileHeight;
         TextureRegion[][] temp = TextureRegion.split(animSheet, tileWidth, tileHeight);
@@ -46,7 +48,9 @@ public class Entity {
     }
 
     public void draw(SpriteBatch batch){
-        batch.draw(anim.getKeyFrame(Game.gameTime), xPos, yPos, width, height);
+        if(!isHidden) {
+            batch.draw(anim.getKeyFrame(Game.gameTime), xPos - (width / 2), yPos - (height / 2), width, height);
+        }
     }
 
     public void dispose(){

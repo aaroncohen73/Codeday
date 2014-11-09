@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.cal.codeday.entity.Entity;
 import com.cal.codeday.level.Level;
@@ -15,17 +16,17 @@ import java.util.ArrayList;
  */
 public class GameScreen implements Screen {
 
-    OrthographicCamera camera = new OrthographicCamera();
+    OrthographicCamera camera;
     SpriteBatch batch;
 
-    ArrayList<Entity> entities = new ArrayList<Entity>();
-    Level currentLevel = new Level("SampleLayout");
-
-    GameMenu Menu = new GameMenu();
+    Level currentLevel;
 
     public GameScreen(){
+        camera = new OrthographicCamera();
         camera.setToOrtho(false, 1000, 600); //Game is 800x600, menu on side is 200x600
         batch = new SpriteBatch();
+        currentLevel = new Level("SampleLayout");
+        currentLevel.start();
     }
 
     public void show(){
@@ -50,31 +51,18 @@ public class GameScreen implements Screen {
 
     public void render(float delta){
         Game.gameTime += delta;
-        for(Entity e: entities){
-            e.update(delta);
-        }
+        currentLevel.update(delta);
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         currentLevel.draw(batch);
-        Menu.draw(batch);
-        for(Entity e : entities){
-            e.draw(batch);
-        }
         batch.end();
     }
 
     public void dispose(){
         currentLevel.dispose();
-        for(Entity e : entities){
-            e.dispose();
-        }
         batch.dispose();
-    }
-
-    public void addEntity(Entity e){
-        entities.add(e);
     }
 
 }

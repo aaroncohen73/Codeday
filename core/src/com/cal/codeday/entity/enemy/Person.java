@@ -16,7 +16,18 @@ public class Person extends Entity {
     protected int nextPointIndex;
 
     public Person(String texPath, int width, int height){
-        super(texPath, width, height);
+        super("gfx/customers/" + texPath + ".png", width, height);
+        isHidden = true;
+        width = 64;
+        height = 64;
+    }
+
+    public void show(){
+        isHidden = false;
+    }
+
+    public void hide(){
+        isHidden = true;
     }
 
     public void setPathPoints(Point[] path){
@@ -26,25 +37,30 @@ public class Person extends Entity {
     public void setDirection(Point finish){
         float dx = finish.x - xPos;
         float dy = finish.y - yPos;
-        double theta = Math.atan(dx / dy);
+        double theta = Math.atan(dy / dx);
         xVel = speed * (float) Math.cos(theta);
         yVel = speed * (float) Math.sin(theta);
     }
 
-    public void start(Point startLocation){
-        xPos = startLocation.x;
-        yPos = startLocation.y;
-        nextPointIndex = 0;
+    public void start(){
+        xPos = pathPoints[0].x;
+        yPos = pathPoints[0].y;
+        nextPointIndex = 1;
         nextPoint = pathPoints[nextPointIndex];
         setDirection(nextPoint);
     }
 
     public void update(float delta){
+        if(isHidden) return;
+
         super.update(delta);
-        if(Math.abs(xPos - nextPoint.x) < 0.1f && Math.abs(yPos - nextPoint.y) < 0.1f){
+        if(Math.abs(xPos - nextPoint.x) < 5f && Math.abs(yPos - nextPoint.y) < 5f){
             if(++nextPointIndex == pathPoints.length){
-                destroy();
+                dispose();
+                hide();
             }else{
+                xPos = nextPoint.x;
+                yPos = nextPoint.y;
                 nextPoint = pathPoints[nextPointIndex];
                 setDirection(nextPoint);
             }
