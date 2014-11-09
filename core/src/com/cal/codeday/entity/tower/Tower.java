@@ -86,6 +86,7 @@ public class Tower extends Entity {
         if(people.size() == 0) return false;
         Person closest = people.get(0);
         float closestDistance = getDistance(closest);
+        System.out.println(closestDistance);
         for(Person p : people){
             if(getDistance(p) < closestDistance){
                 closest = p;

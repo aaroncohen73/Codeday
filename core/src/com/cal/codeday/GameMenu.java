@@ -22,15 +22,14 @@ public class GameMenu {
     Texture bottledEggnogLauncher;
     Texture christmasTreeMortar;
 
-
-    public static int cash = 100; // starting cash
+    public static int money = 100;
     public static int health = 20;
 
     public GameMenu(){
-        // christmasLightShooter = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuPlayTowerChristmasLightShooter.png"));
-        // candyShooter = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuPlayTowerCandyShooter.png"));
-        // bottledEggnogLauncher = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuPlayTowerBottledEggnogLauncher.png"));
-        // christmasTreeMortar = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuPlayTowerChristmasTreeMortar.png"));
+       // christmasLightShooter = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuPlayTowerChristmasLightShooter.png"));
+       // candyShooter = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuPlayTowerCandyShooter.png"));
+       // bottledEggnogLauncher = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuPlayTowerBottledEggnogLauncher.png"));
+       // christmasTreeMortar = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuPlayTowerChristmasTreeMortar.png"));
 
         presentShooter = new Texture(Gdx.files.internal("gfx/spriteFinal/Towers/PresentShooter/presentShooter01.png"));
         menuBG = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuMainBG.png"));
@@ -38,7 +37,6 @@ public class GameMenu {
         //menuStats02 = new Texture(Gdx.files.internal("gfx/spriteFinal/menuStatus02.png"));
         menuOverlay = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuOverlay.png"));
     }
-
 
     public void draw(SpriteBatch batch) {
         batch.draw(menuBG, 800, 0);
