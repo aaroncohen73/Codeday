@@ -12,7 +12,8 @@ import com.cal.codeday.entity.enemy.Person;
  */
 public class GameMenu {
 
-    int cash = 100;
+    public static int cash = 100;
+    public static int health = 20;
 
     public void draw(SpriteBatch batch) {
 

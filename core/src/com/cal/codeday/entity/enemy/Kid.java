@@ -7,6 +7,7 @@ public class Kid extends Person {
 
     public Kid(){
         super("dummyCharacter01", 16, 16);
+        health = 50;
         speed = 150;
     }
 

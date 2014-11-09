@@ -25,9 +25,14 @@ public class Tower extends Entity {
     protected int cost = 0; // Cost of the tower
     protected float slow = 0; // The amount the target is slowed when shot
 
+    protected float shootTimer = 0;
+
     Person currentTarget = null;
     Texture currentState;
     Texture[] states = new Texture[8];
+
+    String projectileTexture = "gfx/spriteFinal/Towers/PresentShooter/projectileCandyYellow01.png";
+    ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 
     public void levelUp(){
         level += 1;
@@ -44,26 +49,50 @@ public class Tower extends Entity {
 
     @Override
     public void update(float delta){
-        acquireTarget();
+        ArrayList<Projectile> toRemove = new ArrayList<Projectile>();
+        for(Projectile p : projectiles){
+            if(p.isVisible()) {
+                p.update(delta);
+            }else{
+                toRemove.add(p);
+            }
+        }
+
+        for(Projectile p : toRemove){
+            projectiles.remove(p);
+        }
+        toRemove.clear();
+
+        if(acquireTarget()) {
+            shootTimer += delta;
+            if (shootTimer >= 1 / fire_rate) {
+                shootTimer = 0;
+                projectiles.add(new Projectile(projectileTexture, 64, 64, this, currentTarget));
+            }
+        }
     }
 
     @Override
     public void draw(SpriteBatch batch){
+        for(Projectile p : projectiles){
+            p.draw(batch);
+        }
+
         batch.draw(currentState, xPos - (width / 2), yPos - (height / 2), width, height);
     }
 
-    public void acquireTarget(){
+    public boolean acquireTarget(){
         ArrayList<Person> people = currentLevel.getCustomers();
-        if(people.size() == 0) return;
+        if(people.size() == 0) return false;
         Person closest = people.get(0);
         float closestDistance = getDistance(closest);
         for(Person p : people){
             if(getDistance(p) < closestDistance){
                 closest = p;
+                closestDistance = getDistance(p);
             }
         }
-
-        if(closestDistance > range) return;
+        if(closestDistance > range) return false;
 
         currentTarget = closest;
 
@@ -72,7 +101,9 @@ public class Tower extends Entity {
         float dy = closest.getyPos() - yPos;
         double theta = Math.toDegrees(Math.atan(dy / dx)) + ((dx < 0)?180:0);
         int state = (int) Math.floor(theta / 45);
-        currentState = states[((state + 2) % 8)];
+        currentState = states[((state + 2) %  16)];
+
+        return true;
     }
 
 }

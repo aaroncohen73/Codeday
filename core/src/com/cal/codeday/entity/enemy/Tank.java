@@ -8,6 +8,7 @@ public class Tank extends Person {
     public Tank(){
         super("dummyCharacter03", 16, 16);
         speed = 50;
+        health = 500;
     }
 
 }
