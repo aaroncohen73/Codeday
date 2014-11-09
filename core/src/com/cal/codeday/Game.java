@@ -18,7 +18,7 @@ public class Game extends ApplicationAdapter {
 	public void create () {
         gameScreen = new GameScreen();
         mainMenu = new MainScreen();
-        screen = mainMenu;
+        screen = gameScreen;
 	}
 
 	@Override

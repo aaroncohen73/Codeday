@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class GameScreen implements Screen {
 
-    OrthographicCamera camera;
+    public static OrthographicCamera camera;
     SpriteBatch batch;
 
     Level currentLevel;
