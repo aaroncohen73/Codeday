@@ -19,6 +19,7 @@ public class GameMenu {
     Texture menuStats01;
     Texture menuStats02;
     Texture menuOverlay;
+
     Button presentShooter;
     Button christmasLightShooter;
     Button candyShooter;

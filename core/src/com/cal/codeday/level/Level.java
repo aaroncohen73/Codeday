@@ -37,17 +37,17 @@ public class Level {
     private float releaseTimer = 0;
 
     public Level(String levelName) {
-        levelBackground = new Texture(Gdx.files.internal("maps/" + levelName + ".png"));
+        levelBackground = new Texture(Gdx.files.internal("gfx/spriteFinal/Decor/levels" + levelName + ".png"));
         levelMusic = sadViolin;
 
-        String levelPath = Gdx.files.internal("maps/" + levelName + ".path").readString();
+        String levelPath = Gdx.files.internal("gfx/spriteFinal/Decor/levels" + levelName + ".path").readString();
         String[] points = levelPath.split("\n");
         pathPoints = new Point[points.length];
         for (int i = 0; i < points.length; i++){
             pathPoints[i] = new Point(Integer.parseInt(points[i].split(",")[0]), Integer.parseInt(points[i].split(",")[1]));
         }
 
-        String[] spawns = Gdx.files.internal("maps/" + levelName + ".spawn").readString().split("\n");
+        String[] spawns = Gdx.files.internal("gfx/spriteFinal/Decor/levels" + levelName + ".spawn").readString().split("\n");
         for (String s : spawns) {
             int num = Integer.parseInt(s.substring(1));
             char first = s.charAt(0);
