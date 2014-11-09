@@ -21,6 +21,8 @@ public class GameScreen implements Screen {
     ArrayList<Entity> entities = new ArrayList<Entity>();
     Level currentLevel = new Level("SampleLayout");
 
+    GameMenu Menu = new GameMenu();
+
     public GameScreen(){
         camera.setToOrtho(false, 1000, 600); //Game is 800x600, menu on side is 200x600
         batch = new SpriteBatch();
@@ -56,6 +58,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         currentLevel.draw(batch);
+        Menu.draw(batch);
         for(Entity e : entities){
             e.draw(batch);
         }

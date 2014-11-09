@@ -7,11 +7,20 @@ import com.cal.codeday.entity.Entity;
  */
 public class Tower extends Entity {
 
-    int level = 0; //Tower level
-    int range; //Range of the tower
-    int power; //Satisfaction it provides
-    int piercing; //Number of towers it can go through
-    int AOE; //Area of Effect on landing
+    protected int level = 1; //Tower level
+    protected float range; //Range of the tower
+    protected float power; //Satisfaction it provides
+    //int piercing; //Number of enemies it can go through
+    protected float AOE; //Area of Effect on landing
+    protected float fire_rate = 0; // How fast the tower can shoot
+    protected int cost = 0; // Cost of the tower
+    protected float slow = 0; // The amount the target is slowed when shot
+
+    public void levelUp(){
+        level += 1;
+    }
+
+
 
     public Tower(String texPath, int size2){
         super(texPath, size2, size2);
