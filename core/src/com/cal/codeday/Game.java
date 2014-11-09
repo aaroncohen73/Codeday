@@ -8,6 +8,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 public class Game extends ApplicationAdapter {
 
     Screen screen;
+    MainScreen mainMenu;
     GameScreen gameScreen;
 
     public static float gameTime = 0.0f;
@@ -16,7 +17,8 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void create () {
         gameScreen = new GameScreen();
-        screen = gameScreen;
+        mainMenu = new MainScreen();
+        screen = mainMenu;
 	}
 
 	@Override

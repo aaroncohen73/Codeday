@@ -43,7 +43,7 @@ public class Level {
         String levelPath = Gdx.files.internal("maps/" + levelName + ".path").readString();
         String[] points = levelPath.split("\n");
         pathPoints = new Point[points.length];
-        for (int i = 0; i < points.length; i++) {
+        /*for (int i = 0; i < points.length; i++){
             pathPoints[i] = new Point(Integer.parseInt(points[i].split(",")[0]), Integer.parseInt(points[i].split(",")[1]));
         }
 
@@ -74,7 +74,7 @@ public class Level {
                     System.out.println("Error: Level script syntax error!");
                     break;
             }
-        }
+        }*/
 
         towers.add(new PresentShooter(this));
     }
@@ -116,7 +116,7 @@ public class Level {
         if(!isStarted) return;
 
         releaseTimer += delta;
-        if(releaseTimer >= (1 / releaseRate)){
+        /*if(releaseTimer >= (1 / releaseRate)){
             if(currentCustomer == customers.size()){
 
             }else {
@@ -126,7 +126,7 @@ public class Level {
                 customers.get(currentCustomer).start();
                 currentCustomer++;
             }
-        }
+        }*/
 
         for(Person p : customers){
             p.update(delta);

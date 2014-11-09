@@ -44,7 +44,7 @@ public class Tower extends Entity {
 
     @Override
     public void update(float delta){
-        acquireTarget();
+        //acquireTarget();
     }
 
     @Override

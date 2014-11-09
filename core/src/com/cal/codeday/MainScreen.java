@@ -4,31 +4,20 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.cal.codeday.entity.Entity;
 import com.cal.codeday.level.Level;
 
-import java.util.ArrayList;
-
 /**
- * Created by acohen on 11/8/14.
+ * Created by Owner on 11/9/2014.
  */
-public class GameScreen implements Screen {
-
+public class MainScreen implements Screen {
     OrthographicCamera camera;
     SpriteBatch batch;
 
-    Level currentLevel;
-    GameMenu menu;
-
-    public GameScreen(){
+    public MainScreen(){
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1000, 600); //Game is 800x600, menu on side is 200x600
         batch = new SpriteBatch();
-        currentLevel = new Level("SampleLayout");
-        currentLevel.start();
-        menu = new GameMenu();
     }
 
     public void show(){
@@ -52,19 +41,10 @@ public class GameScreen implements Screen {
     }
 
     public void render(float delta){
-        Game.gameTime += delta;
-        currentLevel.update(delta);
 
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
-        currentLevel.draw(batch);
-        menu.draw(batch);
-        batch.end();
     }
 
     public void dispose(){
-        currentLevel.dispose();
         batch.dispose();
     }
 
