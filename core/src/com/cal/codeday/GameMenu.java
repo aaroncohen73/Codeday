@@ -40,6 +40,8 @@ public class GameMenu {
     Button turretScrollDrag;
     float scrollValue = 0.0f;
 
+    Button playButton;
+
     public static int money = 500;
     public static int health = 20;
 
@@ -64,6 +66,7 @@ public class GameMenu {
         turretScrollBase = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuTurretScrollBase.png"));
         turretScrollDrag = new Button("gfx/spriteFinal/Menu/menuPlayScrollDrag.png", false, 825, 360, 32, 40);
 
+        playButton = new Button("gfx/spriteFinal/Menu/menuPlay.png", false, 868, 100, 64 ,64);
     }
 
     public void pollInput() {
@@ -104,6 +107,9 @@ public class GameMenu {
                 Game.gameScreen.currentLevel.towers.add(new BottledEggnogLauncher(Game.gameScreen.currentLevel, mX, mY));
             }
         }
+        if(playButton.click(mX, mY)){
+            Game.gameScreen.currentLevel.start();
+        }
     }
 
 
@@ -136,6 +142,7 @@ public class GameMenu {
         font.draw(batch, Integer.toString(health), 900, 295);
         batch.draw(menuCoin, 800, 175, 102, 64);
         font.draw(batch, Integer.toString(money), 900, 200);
+        playButton.draw(batch);
         batch.draw(menuOverlay, 800, 0, 200, 600, 0, 0, 200, 600, true, false);
     }
 
