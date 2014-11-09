@@ -16,7 +16,7 @@ public class Person extends Entity {
     protected int nextPointIndex;
 
     public Person(String texPath, int width, int height){
-        super(texPath, width, height);
+        super("gfx/customers/" + texPath + ".png", width, height);
     }
 
     public void setPathPoints(Point[] path){
@@ -34,7 +34,7 @@ public class Person extends Entity {
     public void start(Point startLocation){
         xPos = startLocation.x;
         yPos = startLocation.y;
-        nextPointIndex = 0;
+        nextPointIndex = 1;
         nextPoint = pathPoints[nextPointIndex];
         setDirection(nextPoint);
     }
