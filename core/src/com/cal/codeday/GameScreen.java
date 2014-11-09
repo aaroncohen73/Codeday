@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.cal.codeday.entity.Entity;
+import com.cal.codeday.level.Level;
 
 import java.util.ArrayList;
 
@@ -18,9 +19,10 @@ public class GameScreen implements Screen {
     SpriteBatch batch;
 
     ArrayList<Entity> entities = new ArrayList<Entity>();
+    Level currentLevel = new Level("SampleLayout");
 
     public GameScreen(){
-        camera.setToOrtho(false, 800, 600);
+        camera.setToOrtho(false, 1000, 600); //Game is 800x600, menu on side is 200x600
         batch = new SpriteBatch();
     }
 
@@ -53,6 +55,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
+        currentLevel.draw(batch);
         for(Entity e : entities){
             e.draw(batch);
         }

@@ -13,16 +13,20 @@ import com.badlogic.gdx.graphics.g2d.Animation;
  */
 public class Entity {
 
-    float xPos, yPos;
-    float xVel, yVel;
+    protected float width, height;
 
-    Texture animSheet;
-    TextureRegion[] animFrames;
-    int TILE_NUM_WIDTH, TILE_NUM_HEIGHT;
-    Animation anim;
+    protected float xPos, yPos;
+    protected float xVel, yVel;
+
+    protected Texture animSheet;
+    protected TextureRegion[] animFrames;
+    protected int TILE_NUM_WIDTH, TILE_NUM_HEIGHT;
+    protected Animation anim;
 
     public Entity(String texPath, int tileWidth, int tileHeight){
         animSheet = new Texture(Gdx.files.internal(texPath));
+        width = tileWidth;
+        height = tileHeight;
         TILE_NUM_WIDTH = animSheet.getWidth() / tileWidth;
         TILE_NUM_HEIGHT = animSheet.getHeight() / tileHeight;
         TextureRegion[][] temp = TextureRegion.split(animSheet, tileWidth, tileHeight);
@@ -42,7 +46,11 @@ public class Entity {
     }
 
     public void draw(SpriteBatch batch){
-        batch.draw(anim.getKeyFrame(Game.gameTime), xPos, yPos);
+        batch.draw(anim.getKeyFrame(Game.gameTime), xPos, yPos, width, height);
+    }
+
+    public void destroy(){
+
     }
 
 }
