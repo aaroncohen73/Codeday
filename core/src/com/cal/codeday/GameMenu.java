@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.utils.ScissorStack;
 import com.cal.codeday.entity.Entity;
 import com.cal.codeday.entity.enemy.Person;
+import com.cal.codeday.entity.tower.BottledEggnogLauncher;
+import com.cal.codeday.entity.tower.CandyShooter;
 import com.cal.codeday.entity.tower.PresentShooter;
 
 /**
@@ -25,6 +27,7 @@ public class GameMenu {
     Texture menuStats02;
     Texture menuOverlay;
     Texture menuCoin;
+    Texture menuHealth;
 
     Button presentShooter;
     Button christmasLightShooter;
@@ -37,15 +40,15 @@ public class GameMenu {
     Button turretScrollDrag;
     float scrollValue = 0.0f;
 
-    public static int money = 100;
+    public static int money = 500;
     public static int health = 20;
 
     int state = 0;
 
     public GameMenu(){
         christmasLightShooter = new Button("gfx/spriteFinal/Towers/PresentShooter/presentShooter01.png", false, 825 + 256, 400, 64, 64);
-        candyShooter = new Button("gfx/spriteFinal/Towers/PresentShooter/presentShooter01.png", false, 825 + 196, 400, 64, 64);
-        bottledEggnogLauncher = new Button("gfx/spriteFinal/Towers/PresentShooter/presentShooter01.png", false, 825 + 128, 400, 64, 64);
+        candyShooter = new Button("gfx/spriteFinal/Towers/CandyShooter/towerCandyShooter01.png", false, 825 + 196, 400, 64, 64);
+        bottledEggnogLauncher = new Button("gfx/spriteFinal/Towers/NogLauncher/noglauncher01.png", false, 825 + 128, 400, 64, 64);
         christmasTreeMortar = new Button("gfx/spriteFinal/Towers/PresentShooter/presentShooter01.png", false, 825 + 64, 400, 64, 64);
         presentShooter = new Button("gfx/spriteFinal/Towers/PresentShooter/presentShooter01.png", false, 825, 400, 64, 64);
 
@@ -53,7 +56,8 @@ public class GameMenu {
         menuStats01 = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuStats01.png"));
         //menuStats02 = new Texture(Gdx.files.internal("gfx/spriteFinal/menuStatus02.png"));
         menuOverlay = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuPlayOverlay.png"));
-        menuCoin = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuCoin.png"));
+        menuCoin = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuPlayMoney.png"));
+        menuHealth = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuPlayHealth.png"));
 
         towerScroll = new Rectangle(825, 400, 150, 64);
 
@@ -80,40 +84,24 @@ public class GameMenu {
                 Game.gameScreen.currentLevel.towers.add(new PresentShooter(Game.gameScreen.currentLevel, mX, mY));
             }
         }
-        if (christmasLightShooter.click(mX, mY)) {
+        if (candyShooter.click(mX, mY)) {
             state = 2; // place candy shooter
         }
         if (state == 2) {
-            if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && money >= 50) {
-                money -= 50;
-                state = 0;
-            }
-        }
-        if (candyShooter.click(mX, mY)) {
-            state = 3; // place candy shooter
-        }
-        if (state == 3) {
             if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && money >= 100) {
                 money -= 100;
                 state = 0;
+                Game.gameScreen.currentLevel.towers.add(new CandyShooter(Game.gameScreen.currentLevel, mX, mY));
             }
         }
         if (bottledEggnogLauncher.click(mX, mY)) {
-            state = 4; // place candy shooter
+            state = 3; // place nog shooter
         }
-        if (state == 4) {
+        if (state == 3) {
             if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && money >= 250) {
                 money -= 250;
                 state = 0;
-            }
-        }
-        if (christmasTreeMortar.click(mX, mY)) {
-            state = 5; // place candy shooter
-        }
-        if (state == 5) {
-            if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && money >= 500) {
-                money -= 500;
-                state = 0;
+                Game.gameScreen.currentLevel.towers.add(new BottledEggnogLauncher(Game.gameScreen.currentLevel, mX, mY));
             }
         }
     }
@@ -121,10 +109,8 @@ public class GameMenu {
 
 
     public void update(){
-        christmasLightShooter.move(825 + 256 - scrollValue, 400);
-        candyShooter.move(825 + 196 - scrollValue, 400);
         bottledEggnogLauncher.move(825 + 128 - scrollValue, 400);
-        christmasTreeMortar.move(825 + 64 - scrollValue, 400);
+        candyShooter.move(825 + 64 - scrollValue, 400);
         presentShooter.move(825 - scrollValue, 400);
     }
 
@@ -138,17 +124,18 @@ public class GameMenu {
         Rectangle scissors = new Rectangle();
         ScissorStack.calculateScissors(GameScreen.camera, batch.getTransformMatrix(), towerScroll, scissors);
         ScissorStack.pushScissors(scissors);
-        //christmasLightShooter.draw(batch);
+        presentShooter.draw(batch);
         candyShooter.draw(batch);
         bottledEggnogLauncher.draw(batch);
-        christmasTreeMortar.draw(batch);
-        presentShooter.draw(batch);
         batch.flush();
         ScissorStack.popScissors();
+        font.draw(batch, "TOWERS:", 830, 500);
         batch.draw(turretScrollBase, 825, 370, 150, 20);
         turretScrollDrag.draw(batch);
-        batch.draw(menuCoin, 820, 500, 64, 64);
-        font.draw(batch, new Integer(money).toString(), 900, 500);
+        batch.draw(menuHealth, 800, 275, 102, 64);
+        font.draw(batch, Integer.toString(health), 900, 295);
+        batch.draw(menuCoin, 800, 175, 102, 64);
+        font.draw(batch, Integer.toString(money), 900, 200);
         batch.draw(menuOverlay, 800, 0, 200, 600, 0, 0, 200, 600, true, false);
     }
 

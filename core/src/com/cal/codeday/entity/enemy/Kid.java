@@ -9,7 +9,7 @@ public class Kid extends Person {
         super("dummyCharacter01", 16, 16);
         health = 50;
         speed = 150;
-        reward = 5
+        reward = 5;
     }
 
 }

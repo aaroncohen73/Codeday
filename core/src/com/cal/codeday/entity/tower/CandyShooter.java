@@ -9,8 +9,10 @@ public class CandyShooter extends Tower {
 
     String projectileTexture = "gfx/spriteFinal/Towers/PresentShooter/projectileCandyYellow01.png";
 
-    public CandyShooter(Level currentLevel) {
+    public CandyShooter(Level currentLevel, float x, float y) {
         super("gfx/spriteFinal/Towers/CandyShooter/towerCandyShooter", 64, currentLevel);
+        xPos = x;
+        yPos = y;
         range = 20f;
         fire_rate = 12f;
         cost = 100;
