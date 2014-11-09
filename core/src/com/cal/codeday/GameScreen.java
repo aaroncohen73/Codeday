@@ -20,6 +20,7 @@ public class GameScreen implements Screen {
     SpriteBatch batch;
 
     Level currentLevel;
+    GameMenu menu;
 
     public GameScreen(){
         camera = new OrthographicCamera();
@@ -27,6 +28,7 @@ public class GameScreen implements Screen {
         batch = new SpriteBatch();
         currentLevel = new Level("SampleLayout");
         currentLevel.start();
+        menu = new GameMenu();
     }
 
     public void show(){
@@ -61,6 +63,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         currentLevel.draw(batch);
+        menu.draw(batch);
         batch.end();
     }
 
