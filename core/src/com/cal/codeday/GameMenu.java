@@ -111,7 +111,11 @@ public class GameMenu {
             state = 5; // place candy shooter
         }
         if (state == 5) {
-            if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && money >= 500) {
+            if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT) && money >= 500
+
+
+
+                    ) {
                 money -= 500;
                 state = 0;
             }
