@@ -16,16 +16,9 @@ public class MainScreen implements Screen {
     SpriteBatch batch;
     Texture mainBG;
     Texture options;
-    Texture credits01;
-    Texture credits02;
-    Texture credits03;
-    Texture help01;
-    Texture help02;
-    Texture help03;
-    Texture play01;
-    Texture play02;
-    Texture play03;
-
+    Button credits;
+    Button help;
+    Button play;
 
     public MainScreen(){
         camera = new OrthographicCamera();
@@ -33,15 +26,9 @@ public class MainScreen implements Screen {
         batch = new SpriteBatch();
         mainBG = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuMainBG.png"));
         options = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/buttonOptions.png"));
-        credits01 = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuMainButtonCredits01.png"));
-        credits02 = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuMainButtonCredits01.png"));
-        credits03 = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuMainButtonCredits01.png"));
-        help01 = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuMainButtonHelp01.png"));
-        help02 = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuMainButtonHelp02.png"));
-        help03 = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuMainButtonHelp03.png"));
-        play01 = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuMainButtonPlay01.png"));
-        play02 = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuMainButtonPlay02.png"));
-        play03 = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuMainButtonPlay03.png"));
+        credits = new Button("gfx/spriteFinal/Menu/menuMainButtonCredits", true, 400, 100, 300, 116);
+        help = new Button("gfx/spriteFinal/Menu/menuMainButtonHelp", true, 400, 250, 300, 116);
+        play = new Button("gfx/spriteFinal/Menu/menuMainButtonPlay", true, 400, 400, 300, 116);
     }
 
     public void show(){
@@ -64,21 +51,31 @@ public class MainScreen implements Screen {
 
     }
 
+    public void pollInput(){
+        float mX = Gdx.input.getX();
+        float mY = 600 - Gdx.input.getY();
+        if(credits.click(mX, mY)){
+
+        }
+        if(help.click(mX, mY)){
+
+        }
+        if(play.click(mX, mY)){
+            Game.screen = Game.gameScreen;
+        }
+    }
+
     public void render(float delta){
+        pollInput();
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.draw(mainBG, 0, 0);
         batch.draw(options, 400, 100);
-        batch.draw(credits01, 400, 100);
-        batch.draw(credits02, 400, 100);
-        batch.draw(credits03, 400, 100);
-        batch.draw(help01, 400, 250);
-        batch.draw(help02, 400, 250);
-        batch.draw(help03, 400, 250);
-        batch.draw(play01, 400, 400);
-        batch.draw(play02, 400, 400);
-        batch.draw(play03, 400, 400);
+        credits.draw(batch);
+        help.draw(batch);
+        play.draw(batch);
 
         batch.end();
     }
