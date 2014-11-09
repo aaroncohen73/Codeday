@@ -10,6 +10,8 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Button {
 
+    public float x, y;
+
     Texture[] tex = new Texture[3];
     ButtonState state = ButtonState.BUTTON_DEFAULT;
     Rectangle bounds;
@@ -27,6 +29,13 @@ public class Button {
         bounds = new Rectangle(x, y, width, height);
     }
 
+    public void move(float x, float y){
+        this.x = x;
+        this.y = y;
+        bounds.setX(x);
+        bounds.setY(y);
+    }
+
     public boolean isOver(float x, float y){
         if(bounds.contains(x, y)) {
             state = ButtonState.BUTTON_HOVER;
@@ -37,9 +46,12 @@ public class Button {
         }
     }
 
-    public void click(float x, float y){
+    public boolean click(float x, float y){
         if(isOver(x, y) && Gdx.input.isTouched()){
             state = ButtonState.BUTTON_CLICK;
+            return true;
+        }else{
+            return false;
         }
     }
 

@@ -9,7 +9,7 @@ public class Game extends ApplicationAdapter {
 
     Screen screen;
     MainScreen mainMenu;
-    GameScreen gameScreen;
+    public static GameScreen gameScreen;
 
     public static float gameTime = 0.0f;
     public static final float gameFPS = 60;

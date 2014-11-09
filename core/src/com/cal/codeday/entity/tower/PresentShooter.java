@@ -7,10 +7,10 @@ import com.cal.codeday.level.Level;
  */
 public class PresentShooter extends Tower {
 
-    public PresentShooter(Level currentLevel){
+    public PresentShooter(Level currentLevel, float x, float y){
         super("gfx/spriteFinal/Towers/PresentShooter/presentShooter", 64, currentLevel);
-        xPos = 150;
-        yPos = 150;
+        xPos = x;
+        yPos = y;
         range = 150f;
         power = 25f;
         fire_rate = 4f;
