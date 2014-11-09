@@ -29,7 +29,7 @@ public class Tower extends Entity {
 
     Person currentTarget = null;
     Texture currentState;
-    Texture[] states = new Texture[8];
+    Texture[] states = new Texture[16];
 
     String projectileTexture = "gfx/spriteFinal/Towers/PresentShooter/projectileCandyYellow01.png";
     ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
@@ -40,8 +40,11 @@ public class Tower extends Entity {
 
     public Tower(String texPath, int size2, Level currentLevel){
         super(texPath + "01.png", size2, size2);
-        for(int i = 1; i < 9; i++){
+        for(int i = 1; i < 10; i++){
             states[i - 1] = new Texture(Gdx.files.internal(texPath + "0" + i + ".png"));
+        }
+        for(int i = 10; i < 17; i++){
+            states[i - 1] = new Texture(Gdx.files.internal(texPath + i + ".png"));
         }
         this.currentLevel = currentLevel;
         currentState = states[0];
@@ -86,7 +89,6 @@ public class Tower extends Entity {
         if(people.size() == 0) return false;
         Person closest = people.get(0);
         float closestDistance = getDistance(closest);
-        System.out.println(closestDistance);
         for(Person p : people){
             if(getDistance(p) < closestDistance){
                 closest = p;
@@ -102,7 +104,7 @@ public class Tower extends Entity {
         float dy = closest.getyPos() - yPos;
         double theta = Math.toDegrees(Math.atan(dy / dx)) + ((dx < 0)?180:0);
         int state = (int) Math.floor(theta / 22.5);
-        currentState = states[((state + 2) %  16)];
+        currentState = states[((state + 4) %  16)];
 
         return true;
     }
