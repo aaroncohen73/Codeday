@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import sun.applet.Main;
 
 public class Game extends ApplicationAdapter {
 
@@ -18,7 +19,7 @@ public class Game extends ApplicationAdapter {
 	public void create () {
         gameScreen = new GameScreen();
         mainMenu = new MainScreen();
-        screen = gameScreen;
+        screen = mainMenu;
 	}
 
 	@Override
