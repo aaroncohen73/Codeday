@@ -27,8 +27,8 @@ public class Entity {
 
     public Entity(String texPath, int tileWidth, int tileHeight){
         animSheet = new Texture(Gdx.files.internal(texPath));
-        width = tileWidth;
-        height = tileHeight;
+        width = tileHeight;
+        height = tileWidth;
         TILE_NUM_WIDTH = animSheet.getWidth() / tileWidth;
         TILE_NUM_HEIGHT = animSheet.getHeight() / tileHeight;
         TextureRegion[][] temp = TextureRegion.split(animSheet, tileWidth, tileHeight);

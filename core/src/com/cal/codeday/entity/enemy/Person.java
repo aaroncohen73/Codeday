@@ -18,6 +18,8 @@ public class Person extends Entity {
     public Person(String texPath, int width, int height){
         super("gfx/customers/" + texPath + ".png", width, height);
         isHidden = true;
+        width = 64;
+        height = 64;
     }
 
     public void show(){
@@ -57,6 +59,8 @@ public class Person extends Entity {
                 dispose();
                 hide();
             }else{
+                xPos = nextPoint.x;
+                yPos = nextPoint.y;
                 nextPoint = pathPoints[nextPointIndex];
                 setDirection(nextPoint);
             }

@@ -1,6 +1,7 @@
 package com.cal.codeday.level;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 public class Level {
 
     private Texture levelBackground;
+    public Music levelMusic;
 
     private ArrayList<Person> customers = new ArrayList<Person>();
     private int currentCustomer = 0;
@@ -78,6 +80,14 @@ public class Level {
         }
 
         isStarted = true;
+    }
+
+    public void end(boolean failed){
+        if(failed){
+            //Game over man, game over!
+        }else{
+
+        }
     }
 
     public void update(float delta){

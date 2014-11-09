@@ -6,7 +6,7 @@ package com.cal.codeday.entity.enemy;
 public class Kid extends Person {
 
     public Kid(){
-        super("placeholder", 32, 32);
+        super("dummyCharacter01", 16, 16);
         speed = 150;
     }
 
