@@ -72,7 +72,6 @@ public class Tower extends Entity {
         float dy = closest.getyPos() - yPos;
         double theta = Math.toDegrees(Math.atan(dy / dx)) + ((dx < 0)?180:0);
         int state = (int) Math.floor(theta / 45);
-        System.out.println(state);
         currentState = states[((state + 2) % 8)];
     }
 
