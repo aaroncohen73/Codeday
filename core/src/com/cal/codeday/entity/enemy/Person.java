@@ -9,6 +9,8 @@ import java.awt.Point;
  */
 public class Person extends Entity {
 
+    public static int health = 20;
+
     protected float speed;
 
     protected Point[] pathPoints;
@@ -30,6 +32,8 @@ public class Person extends Entity {
         isHidden = true;
     }
 
+    public boolean isVisible() {return isHidden;}
+
     public void setPathPoints(Point[] path){
         pathPoints = path;
     }
@@ -37,8 +41,8 @@ public class Person extends Entity {
     public void setDirection(Point finish){
         float dx = finish.x - xPos;
         float dy = finish.y - yPos;
-        double theta = Math.atan(dy / dx);
-        xVel = speed * (float) Math.cos(theta);
+        double theta =Math.atan(dy / dx);
+        xVel = ((dx < 0)?-1:1) * speed * (float) Math.cos(theta);
         yVel = speed * (float) Math.sin(theta);
     }
 
@@ -56,6 +60,7 @@ public class Person extends Entity {
         super.update(delta);
         if(Math.abs(xPos - nextPoint.x) < 5f && Math.abs(yPos - nextPoint.y) < 5f){
             if(++nextPointIndex == pathPoints.length){
+                Person.health--;
                 dispose();
                 hide();
             }else{

@@ -1,12 +1,14 @@
 package com.cal.codeday.entity.tower;
 
+import com.cal.codeday.level.Level;
+
 /**
- * Created by Owner on 11/8/2014.
+ * Created by Dhaley on 11/8/2014.
  */
 public class CandyShooter extends Tower {
 
-    public CandyShooter() {
-        super("placeholder2", 64);
+    public CandyShooter(Level currentLevel) {
+        super("placeholder2", 64, currentLevel);
         range = 60f;
         fire_rate = 3f;
         cost = 100;

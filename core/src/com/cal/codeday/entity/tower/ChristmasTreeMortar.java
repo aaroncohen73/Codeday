@@ -1,12 +1,14 @@
 package com.cal.codeday.entity.tower;
 
+import com.cal.codeday.level.Level;
+
 /**
- * Created by Owner on 11/8/2014.
+ * Created by Dhaley on 11/8/2014.
  */
 public class ChristmasTreeMortar extends Tower {
 
-    public ChristmasTreeMortar() {
-        super ("placeholder4" , 64);
+    public ChristmasTreeMortar(Level currentLevel) {
+        super ("placeholder4" , 64, currentLevel);
         range = 60f;
         power = 5f;
         fire_rate = 3f;

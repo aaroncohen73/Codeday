@@ -1,12 +1,14 @@
 package com.cal.codeday.entity.tower;
 
+import com.cal.codeday.level.Level;
+
 /**
- * Created by Owner on 11/8/2014.
+ * Created by Dhaley on 11/8/2014.
  */
 public class ChristmasLightsShooter extends Tower {
 
-    public ChristmasLightsShooter() {
-        super ("placeholder1" , 64);
+    public ChristmasLightsShooter(Level currentLevel) {
+        super ("placeholder1" , 64, currentLevel);
         slow = 50f;
         fire_rate = .75f;
         cost = 50;
