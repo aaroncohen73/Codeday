@@ -21,8 +21,8 @@ public class Projectile extends Entity {
     public Projectile(String texPath, int width, int height, Tower shooter, Person target){
         super(texPath, width, height);
         projectileTexture = new Texture(Gdx.files.internal(texPath));
-        this.xPos = shooter.getxPos() + 32;
-        this.yPos = shooter.getyPos() + 32;
+        this.xPos = shooter.getxPos() + (width / 2);
+        this.yPos = shooter.getyPos() + (width / 2);
         this.shooter = shooter;
         this.target = target;
         isHidden = false;
@@ -52,7 +52,7 @@ public class Projectile extends Entity {
     @Override
     public void draw(SpriteBatch batch){
         if(!isHidden){
-            batch.draw(projectileTexture, xPos - (width / 2), yPos - (height / 2));
+            batch.draw(projectileTexture, xPos - (width / 2), yPos - (height / 2), width, height);
         }
     }
 

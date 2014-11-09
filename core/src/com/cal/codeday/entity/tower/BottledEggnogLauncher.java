@@ -7,15 +7,14 @@ import com.cal.codeday.level.Level;
  */
 public class BottledEggnogLauncher extends Tower {
 
-    String projectileTexture = "gfx/spriteFinal/Towers/Nog.png";
-
     public BottledEggnogLauncher(Level currentLevel, float x, float y) {
         super ("gfx/spriteFinal/Towers/NogLauncher/noglauncher" , 64, currentLevel);
+        projectileTexture = "gfx/spriteFinal/Towers/NogLauncher/Nog.png";
         xPos = x;
         yPos = y;
         range = 300f;
         power = 35f;
-        fire_rate = 2f;
+        fire_rate = 0.25f;
         cost = 250;
         slow = 2f;
         AOE = 60f;
