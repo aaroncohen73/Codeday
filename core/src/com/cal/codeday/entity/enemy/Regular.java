@@ -8,7 +8,7 @@ public class Regular extends Person {
     public Regular(){
         super("dummyCharacter02", 16, 16);
         speed = 100;
-        health = 200;
+        health = 50;
         reward = 10;
     }
 

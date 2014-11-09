@@ -19,7 +19,7 @@ import com.cal.codeday.entity.tower.PresentShooter;
  * The sidebar in-game (Purchase towers, etc.) (Could be called player class, idk)
  */
 public class GameMenu {
-
+    boolean gameOver = false;
     BitmapFont font = new BitmapFont(Gdx.files.internal("font/Minecraftia-Regular-32.fnt"));
 
     Texture menuBG;
@@ -42,8 +42,11 @@ public class GameMenu {
 
     Button playButton;
 
-    public static int money = 500;
-    public static int health = 20;
+    Texture youLose;
+    Texture youWin;
+
+    public static int money = 100;
+    public static int health = 10;
 
     int state = 0;
 
@@ -67,6 +70,9 @@ public class GameMenu {
         turretScrollDrag = new Button("gfx/spriteFinal/Menu/menuPlayScrollDrag.png", false, 825, 360, 32, 40);
 
         playButton = new Button("gfx/spriteFinal/Menu/menuPlay.png", false, 868, 100, 64 ,64);
+
+        youLose = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuLoser.png"));
+        youWin = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/menuWinner.png"));
     }
 
     public void pollInput() {
@@ -114,16 +120,33 @@ public class GameMenu {
 
 
 
-    public void update(){
+    public void update(SpriteBatch batch){
         bottledEggnogLauncher.move(825 + 128 - scrollValue, 400);
         candyShooter.move(825 + 64 - scrollValue, 400);
         presentShooter.move(825 - scrollValue, 400);
+
+        if(health <= 0){
+            health = 0;
+            batch.draw(youLose, 0, 0, 800, 600);
+            if(!gameOver) {
+                Game.gameScreen.currentLevel.end(true);
+                gameOver = true;
+            }
+        }else{
+            boolean isAlive = false;
+            for(Person p : Game.gameScreen.currentLevel.customers){
+                if(p.getHealth() > 0){
+                    isAlive = true;
+                }
+            }
+            if(!isAlive){
+                batch.draw(youWin, 0, 0, 800, 600);
+            }
+        }
     }
 
     public void draw(SpriteBatch batch) {
         pollInput();
-
-        update();
 
         batch.draw(menuBG, 800, 0);
         batch.draw(menuStats01, 805, 100);
@@ -144,6 +167,8 @@ public class GameMenu {
         font.draw(batch, Integer.toString(money), 900, 200);
         playButton.draw(batch);
         batch.draw(menuOverlay, 800, 0, 200, 600, 0, 0, 200, 600, true, false);
+
+        update(batch);
     }
 
 }

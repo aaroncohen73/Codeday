@@ -37,6 +37,8 @@ public class Person extends Entity {
         pathPoints = path;
     }
 
+    public float getHealth() { return health; }
+
     public void setDirection(Point finish){
         float dx = finish.x - xPos;
         float dy = finish.y - yPos;
@@ -55,8 +57,9 @@ public class Person extends Entity {
 
     public void isHit(float damage){
         health -= damage;
-        if(health <= 0){
+        if(health <= 0 && !isHidden){
             isHidden = true;
+            GameMenu.money += reward;
         }
     }
 
@@ -67,7 +70,6 @@ public class Person extends Entity {
         if(Math.abs(xPos - nextPoint.x) < 5f && Math.abs(yPos - nextPoint.y) < 5f){
             if(++nextPointIndex == pathPoints.length){
                 GameMenu.health--;
-                GameMenu.money += reward;
                 dispose();
                 hide();
             }else{

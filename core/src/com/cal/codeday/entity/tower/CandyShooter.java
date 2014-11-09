@@ -7,14 +7,13 @@ import com.cal.codeday.level.Level;
  */
 public class CandyShooter extends Tower {
 
-    String projectileTexture = "gfx/spriteFinal/Towers/PresentShooter/projectileCandyYellow01.png";
-
     public CandyShooter(Level currentLevel, float x, float y) {
         super("gfx/spriteFinal/Towers/CandyShooter/towerCandyShooter", 64, currentLevel);
+        projectileTexture = "gfx/spriteFinal/Towers/PresentShooter/projectileCandyYellow01.png";
         xPos = x;
         yPos = y;
-        range = 20f;
-        fire_rate = 12f;
+        range = 100f;
+        fire_rate = 5f;
         cost = 100;
         power = 5f;
     }

@@ -70,7 +70,7 @@ public class Tower extends Entity {
             shootTimer += delta;
             if (shootTimer >= 1 / fire_rate) {
                 shootTimer = 0;
-                projectiles.add(new Projectile(projectileTexture, 64, 64, this, currentTarget));
+                projectiles.add(new Projectile(projectileTexture, 32, 32, this, currentTarget));
             }
         }
     }

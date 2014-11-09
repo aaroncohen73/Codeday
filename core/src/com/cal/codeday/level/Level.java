@@ -25,8 +25,9 @@ public class Level {
 
     private Texture levelBackground;
     private Music levelMusic;
+    private Texture kiosk = new Texture(Gdx.files.internal("gfx/spriteFinal/Menu/kiosk.png"));
 
-    private ArrayList<Person> customers = new ArrayList<Person>();
+    public ArrayList<Person> customers = new ArrayList<Person>();
     private int currentCustomer = 0;
 
     public ArrayList<Tower> towers = new ArrayList<Tower>();
@@ -97,16 +98,15 @@ public class Level {
         }
 
         levelMusic.setLooping(true);
-        levelMusic.play();
+        //levelMusic.play();
 
         isStarted = true;
     }
 
     public void end(boolean failed){
-        levelMusic.stop();
+       //levelMusic.stop();
         if(failed){
-            sadViolin.setLooping(true);
-            sadViolin.play();
+            levelMusic.play();
         }else{
 
         }
@@ -122,7 +122,6 @@ public class Level {
             }else {
                 releaseTimer = 0;
                 customers.get(currentCustomer).show();
-                System.out.println(pathPoints[0]);
                 customers.get(currentCustomer).setPathPoints(pathPoints);
                 customers.get(currentCustomer).start();
                 currentCustomer++;
@@ -143,6 +142,8 @@ public class Level {
         for(Person p : customers){
             p.draw(batch);
         }
+
+        batch.draw(kiosk, 720, 80);
 
         for(Tower t : towers){
             t.draw(batch);
