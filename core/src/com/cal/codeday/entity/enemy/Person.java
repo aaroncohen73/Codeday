@@ -43,7 +43,7 @@ public class Person extends Entity {
         super.update(delta);
         if(Math.abs(xPos - nextPoint.x) < 0.1f && Math.abs(yPos - nextPoint.y) < 0.1f){
             if(++nextPointIndex == pathPoints.length){
-                destroy();
+                dispose();
             }else{
                 nextPoint = pathPoints[nextPointIndex];
                 setDirection(nextPoint);
